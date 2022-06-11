@@ -3,7 +3,7 @@ import { Tab } from "@mui/material";
 import { Box } from "@mui/material"
 import { useState } from "react"
 import About from "../pages/About";
-import Home from "../pages/Home";
+import Home from "./Intro";
 import Product from "../pages/Product";
 
 export default function Tabs(){
@@ -22,7 +22,7 @@ export default function Tabs(){
                         <Tab label="Product" value="3"/>
                     </TabList>
                 </Box>
-                <TabPanel value="1"><Home/> </TabPanel>
+                <TabPanel value="1"></TabPanel>
                 <TabPanel value="2"><About/></TabPanel>
                 <TabPanel value="3"><Product/></TabPanel>
             </TabContext>
