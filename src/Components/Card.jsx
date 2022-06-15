@@ -1,24 +1,47 @@
-import { Avatar, CardActions, CardContent, CardHeader, CardMedia, Typography } from '@mui/material'
-import React from 'react'
-import ExploreIcon from '@mui/icons-material/Explore';
+import { Avatar, Box, CardActions, CardContent, CardHeader, CardMedia, styled, Typography } from '@mui/material'
+import * as React from 'react';
+import { display, textAlign } from '@mui/system';
+import { brown } from '@mui/material/colors';
 
-export default function Card() {
+const Icon = styled("div")(({ theme }) => ({
+  justifyContent:"center",
+  textAlign:"center",
+  padding:10,
+  display:"flex"
+}));
+const Item = styled("div")(({ theme }) => ({
+  justifyContent:"center",
+  textAlign:"center",
+  padding:20,
+  background:"#8d6e63",
+  borderRadius:5,
+  [theme.breakpoints.down('md')]: {
+      width:600,
+      height:200,
+    },
+    [theme.breakpoints.up('md')]: {
+        width:300,
+        height:250,
+
+    },
+}));
+
+
+export default function Card({title,icon}) {
   return (
-      <Card sx={{ minWidth: 275 }}>
-        <CardHeader>
-            <Avatar>
-            <ExploreIcon/>
-            </Avatar>
-            <Typography variant='h1' fontWeight="500">
-                Mission
-            </Typography>
-        </CardHeader>
-      <CardContent>
-        <Typography variant="body2"  sx={{width:"300px"}}>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi
+        <Item>
+          <Icon>
+        <Avatar>
+          {icon}
+        </Avatar>
+        </Icon>
+        <Typography variant="h1" fontWeight="1500" fontSize="30px">
+          {title}
         </Typography>
-      </CardContent>
-    </Card>
+        <Typography variant="h6" fontSize="15px" >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sapiente error qui iure, deleniti sit, itaque voluptatem assumenda officiis obcaecati consequatur in? 
+        </Typography>
+        </Item>
     
   )
 }
