@@ -28,8 +28,9 @@ const Item = styled("div")(({ theme }) => ({
             textAlign:"center",
             display:"flex",
             flexDirection:"column",
+            flexWrap:"wrap",
             textAlign:"start",
-            padding:30,
+            paddingBottom:30,
             [theme.breakpoints.up('md')]: {
                 width:700,
               },

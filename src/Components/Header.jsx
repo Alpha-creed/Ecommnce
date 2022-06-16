@@ -37,6 +37,11 @@ const Item = styled("div")(({ theme }) => ({
   justifyContent:"center",
   border:"2px"
 }));
+const Close = styled("div")(({ theme }) => ({
+  paddingTop:"25px",
+  display:"flex",
+  flexWarp:"wrap"
+}));
 
 const Small = styled('div')(({ theme }) => ({
   padding: theme.spacing(1),
@@ -46,8 +51,18 @@ const Small = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
       display:"none"
   },
- 
-}));
+}))
+
+  const Frame = styled('div')(({ theme }) => ({
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('md')]: {
+      width:450
+        },
+    [theme.breakpoints.up('md')]: {
+      width:750    },
+   
+}))
+
 const Full = styled('div')(({ theme }) => ({
   padding: theme.spacing(1),
   [theme.breakpoints.down('md')]: {
@@ -72,19 +87,19 @@ const toggleDrawer = (anchor,open) =>(event)=>{
 }
 
 const list = (anchor) =>(
-  <Box sx={{width:750}}
+  <Frame 
   role="presentation">
         <Stack spacing={3} direction="row" justifyContent="space-around">
           <Item>
             <Box sx={{width:"100px"}}>
         <Typography variant="h3">
-            Alpha Coder
+            Alpha 
         </Typography>
         </Box>
         </Item>
-        <Item sx={{paddingTop:"25px"}}>
+        <Close >
       <CloseIcon onClick={toggleDrawer(anchor,false)} onKeyDown={toggleDrawer(anchor,false)}/>
-      </Item>
+      </Close>
       </Stack>
     <List>
     <ListItemButton>
@@ -141,7 +156,7 @@ const list = (anchor) =>(
               </ListItemButton>
             
     </List>
-  </Box>
+  </Frame>
 
 )
   return(
@@ -163,9 +178,9 @@ const list = (anchor) =>(
         <Item>
           <Typography variant="body2" sx={{paddingRight:"40px",fontSize:"30px",display:"flex"}}>
               Cart
-             {/* <Badge badgeContent={4} color={brown}> */}
+             <Badge badgeContent={4} color="primary">
               <ShoppingCartIcon sx={{fontSize:"25px",paddingLeft:"10px",paddingTop:"12px"}}/>
-              {/* </Badge> */}
+              </Badge>
             </Typography>  
           
             <Typography variant="body2" sx={{paddingRight:"40px",fontSize:"30px" ,display:"flex"}}>
@@ -176,14 +191,14 @@ const list = (anchor) =>(
              </Stack>
              </Full>
              <Small>
-        <Stack spacing={3} direction="row" justifyContent="space-around">
+        <Stack spacing={1} direction="row" justifyContent="space-around">
             <Item>
         <Typography variant="h3">
             Alpha 
         </Typography>
         </Item>
         <Item>
-              <TocIcon onClick={toggleDrawer("left",true)} sx={{paddingTop:"15px"}}/>
+              <TocIcon onClick={toggleDrawer("left",true)} sx={{paddingTop:"5px" ,fontSize:"50px" ,color:"#A14C1B"}}/>
               <SwipeableDrawer
               anchor={"left"}
               open={state["left"]}

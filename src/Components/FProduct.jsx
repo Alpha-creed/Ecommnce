@@ -34,16 +34,33 @@ const Small = styled('div')(({ theme }) => ({
 const Btn = styled('div')(({ theme }) => ({
   margin: 0,
   position:"absolute",
+  [theme.breakpoints.down('sm')]: {
+    display:"none"
+  },
   [theme.breakpoints.down('md')]: {
     Bottom:0,
     left:250 
   },
   [theme.breakpoints.up('md')]: {
-   top: 500,
-   left:700 
+   Bottom:0,
+   left:500 
 
   },
- 
+
+}));
+const BtnConst = styled('div')(({ theme }) => ({
+  margin: 0,
+  position:"absolute",
+  [theme.breakpoints.down('sm')]: {
+    left:50,
+    padding:15 
+
+  },
+  [theme.breakpoints.up('sm')]: {
+   display:"none", 
+
+  },
+
 }));
 
   const add = (a) => a.slice(0,3);
@@ -96,7 +113,7 @@ export default function FProduct() {
 
    
   return (
-    <Container sx={{backgroundColor:"#E6F7FF",padding:10}}>
+    <Container sx={{backgroundColor:"#E6F7FF" , paddingBottom:10,position:"relative"}}>
       <Typography variant="h3">
           Featured Product
       </Typography>
@@ -109,8 +126,11 @@ export default function FProduct() {
                  })}
                  </Small>
                   <Btn>
-                 <Button href="www.google.com" sx={{ }} variant="contained">All Products</Button>
+                 <Button href="www.google.com"  variant="contained">All Products</Button>
                  </Btn>
+                 <BtnConst>
+                 <Button href="www.google.com"  variant="contained">All Products</Button>
+                 </BtnConst>
     </Container>
   )
 }

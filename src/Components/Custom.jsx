@@ -21,10 +21,23 @@ const Item = styled("div")(({ theme }) => ({
 
   const Sgl = styled("div")(({theme})=>({
     [theme.breakpoints.down('md')]: {
-      padding:20
+      paddingBottom:20
      },
   }))
-
+  const SglText = styled("div")(({theme})=>({
+    [theme.breakpoints.down('md')]: {
+      paddingBottom:20
+     },
+     [theme.breakpoints.down('sm')]: {
+      display:"none"
+     },
+  }))
+  const SglTextConst = styled("div")(({theme})=>({
+    [theme.breakpoints.down('sm')]: {
+      paddingBottom:10,
+      width:200
+     },
+  }))
 export default function Custom() {
   return (
    <Box>
@@ -37,12 +50,17 @@ export default function Custom() {
     </Sgl>
     </Box>
     <Box sx={{textAlign:"right",width:"500px"}}>
-    <Sgl>
+    <SglText>
     <Typography variant='body'>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa aliquid tenetur porro magni blanditiis enim, totam voluptas incidunt  
     </Typography>
-    </Sgl>
+    </SglText>
     </Box>
+    <SglTextConst>
+    <Typography variant='body'>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa aliquid tenetur porro magni blanditiis enim, totam voluptas incidunt  
+    </Typography>
+    </SglTextConst>
     </Item>
     <Item>
     <Sgl>
