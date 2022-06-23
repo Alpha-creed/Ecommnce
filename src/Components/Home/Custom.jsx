@@ -1,7 +1,7 @@
 import { Box, Container, Stack, styled, Typography } from '@mui/material'
 import React from 'react'
 import Card from './Card';
-import SingleProduct from './SingleProduct';
+import SingleProduct from '../SingleProduct';
 import ExploreIcon from '@mui/icons-material/Explore';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import HistoryEduIcon from '@mui/icons-material/HistoryEdu';

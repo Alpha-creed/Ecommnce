@@ -71,9 +71,12 @@ export default function Card({title,icon}) {
         {icon}
       </Avatar>
       </Icon>
-      <Typography variant="h1" fontWeight="1500" fontSize="30px">
+      <Typography variant="h1" fontWeight="1500" fontSize="10px">
         {title}
       </Typography>
+      <Typography variant="h6" fontSize="5px" >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sapiente error qui iure, deleniti sit, itaque voluptatem assumenda officiis obcaecati consequatur in? 
+        </Typography>
       </ItemConst>
       </Container>
   )

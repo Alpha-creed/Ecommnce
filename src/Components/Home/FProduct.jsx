@@ -12,9 +12,9 @@ import { lightBlue } from '@mui/material/colors'
 import { useState } from 'react'
 import { Box } from '@mui/system'
 import { useEffect } from 'react'
-import SingleProduct from './SingleProduct'
+import SingleProduct from '../SingleProduct'
 
-const url="https://course-api.com/react-store-products?_limit=3"
+const url="https://course-api.com/react-store-products"
 
 
 

@@ -1,6 +1,7 @@
 import { Button, Container, styled, TextField, Typography } from '@mui/material';
 import { blue } from '@mui/material/colors';
 import React from 'react'
+import End from '../End';
 
 
 const Item = styled("div")(({ theme }) => ({
@@ -15,7 +16,31 @@ const Item = styled("div")(({ theme }) => ({
         flexDirection:"column",
         justifyContent:"space-around",
       },
+      [theme.breakpoints.down("sm")]:{
+        display:"none",
+      }
     }));
+    const Cell = styled("div")(({theme})=>({
+        [theme.breakpoints.down("sm")]:{
+            display:"block",
+            width:100,
+            fontSize:"12px",
+            paddingTop:12,
+            paddingBottom:22
+
+          },
+          [theme.breakpoints.up("sm")]:{
+            display:"none",
+
+          }
+        }))
+    const Contain = styled("div")(({theme})=>({
+        [theme.breakpoints.down("sm")]:{
+            width:"20px",
+            paddingTop:5,
+
+          }
+    }))
     const Sub = styled("div")(({ theme }) => ({
         textAlign:"center",
         display:"flex",
@@ -39,44 +64,35 @@ const Item = styled("div")(({ theme }) => ({
 
               },
             }));
-            const Foot = styled("div")(({ theme }) => ({
-                textAlign:"center",
-                backgroundColor:"brown",
-                [theme.breakpoints.up('md')]: {
-                    display:"flex",
-                    justifyContent:"center",
-                  },
-                  [theme.breakpoints.down('md')]: {
-                    display:"flex",
-                    flexDirection:"column",
-                    justifyContent:"center",
-                  },
-                }));
+          
 export default function Footer() {
   return (
     <Container sx={{position:"relative"}}>
     <Item>
         <Mai>
-        <Typography variant='h1' fontSize="30px" sx={{paddingBottom:2}}>
+<Typography variant='h1' fontSize="15px" sx={{paddingBottom:2}}>
         Join our newsletter and get 20% off
         </Typography>
+        <Sub>
+        <TextField id="outlined-basic" label="Outlined" variant="outlined"/>
+        <Button variant='outline'sx={{height:"60px" }}>Subscribe</Button> 
+        </Sub>
         <Typography variant='body' fontSize="15px"> 
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores eligendi architecto, amet suscipit dolorum cum voluptatibus odio vel quas rem ad nam, a officiis! Recusandae provident quos modi veniam sint.
         </Typography>
         </Mai>
-        <Sub>
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-        <Button variant='outline'sx={{height:"60px" }}>Subscribe</Button>
-        </Sub>
+       
     </Item>
-    <Foot>
-        <Typography>
-        © 2022 ComfySloth
+<Cell>
+<Typography variant='h1' fontSize="15px" sx={{paddingBottom:2}}>
+        Join our newsletter and get 20% off
         </Typography>
-        <Typography>
-        All rights reserved
-        </Typography>
-    </Foot>
+            <Contain>
+            <input/>
+            </Contain>
+        <Button variant='outline'sx={{height:"30px" }}>Subscribe</Button> 
+</Cell>
+  <End/>
     </Container>
   )
 }

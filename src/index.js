@@ -2,18 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import Head from './Components/Header'
-import Tabs from './Components/Tabs';
-import Intro from './Components/Intro';
-import FProduct from './Components/FProduct';
-import Custom from './Components/Custom';
-import Card from './Components/Card';
-import Footer from './Components/Footer';
-import Home from './pages/Home';
+import Intro from './Components/Home/Intro';
+import FProduct from './Components/Home/FProduct';
+import Custom from './Components/Home/Custom';
+import Card from './Components/Home/Card';
+import Footer from './Components/Home/Footer';
+import About from './pages/About';
+import TabsConst from './Components/Tabs';
+import End from './Components/End'
+import Product from './pages/Product';
+import ProdDisplay from './Components/Product/ProdDisplay';
+import { AppProvider } from './Components/Context';
+import Cart from './Components/Cart/Cart';
+import CartItem from './Components/Cart/CartItem';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Home />
+    {/* <AppProvider> */}
+    <CartItem />
+    {/* </AppProvider> */}
   </React.StrictMode>
 );
 

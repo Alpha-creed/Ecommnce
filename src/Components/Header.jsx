@@ -89,7 +89,7 @@ const toggleDrawer = (anchor,open) =>(event)=>{
 const list = (anchor) =>(
   <Frame 
   role="presentation">
-        <Stack spacing={3} direction="row" justifyContent="space-around">
+        <Stack spacing={3} direction="row" justifyContent="space-evenly " >
           <Item>
             <Box sx={{width:"100px"}}>
         <Typography variant="h3">
