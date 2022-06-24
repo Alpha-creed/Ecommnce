@@ -12,16 +12,13 @@ import TabsConst from './Components/Tabs';
 import End from './Components/End'
 import Product from './pages/Product';
 import ProdDisplay from './Components/Product/ProdDisplay';
-import { AppProvider } from './Components/Context';
 import Cart from './Components/Cart/Cart';
-import CartItem from './Components/Cart/CartItem';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <AppProvider> */}
-    <ProdDisplay />
-    {/* </AppProvider> */}
+    <Product />
   </React.StrictMode>
 );
 

@@ -1,11 +1,14 @@
-import { Box, Button, Container, Grid, List, ListItem, ListItemButton, ListItemText, Stack, styled, Typography } from '@mui/material'
+import { Box, Button, Container, Grid, List, ListItem, ListItemButton, ListItemText, Modal, Paper, Stack, styled, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import SingleProduct from '../SingleProduct';
 import SideBar from './SideBar';
-import { useGlob } from '../Context';
 import { AddToDb, getStoredCart,removeFromDb,clearTheCart } from '../Cart/localDb';
 import { Cart } from '../Cart/Cart';
+import CloseIcon from '@mui/icons-material/Close';
+import TocIcon from '@mui/icons-material/Toc';
+import { SwipeableDrawer } from "@mui/material";
+
 
 const url="https://course-api.com/react-store-products"
 
@@ -20,6 +23,46 @@ export default function ProdDisplay() {
     const [num,setNum] =useState(0)
     const [categories, setCategories] = useState();
     const [cart,updateCart] = useState([])
+    const [open, setOpen] = React.useState(false);
+    const [state,setState] = useState(false)
+const [count,setCount] = useState(1)
+
+const toggleDrawer = (anchor,open) =>(event)=>{
+  if(event && event.type === 'keydown' && (event.key === 'Tab' || event.key ===
+  "Shift")){
+    return;
+  }
+  setState({...state,[anchor]:open})
+}
+const Small = styled('div')(({ theme }) => ({
+    [theme.breakpoints.down('md')]: {
+      display:"block"
+    },
+    [theme.breakpoints.up('md')]: {
+        display:"none"
+    },
+  }))
+  
+    const Frame = styled('div')(({ theme }) => ({
+      padding: theme.spacing(1),
+      [theme.breakpoints.down('md')]: {
+        width:250
+          },
+      [theme.breakpoints.up('md')]: {
+        width:750    },
+     
+  }))
+  const Close = styled("div")(({ theme }) => ({
+    paddingTop:"25px",
+    display:"flex",
+    flexWarp:"wrap"
+  }));
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
     const fetchItems = async() =>{
         setLoading(true)
@@ -39,27 +82,50 @@ export default function ProdDisplay() {
         fetchItems()
         
     },[])
+    useEffect(() => {
         const savedCart = getStoredCart();
         const savedProducts = [];
-        let quantity;
-        for (const key in savedCart) {
-                quantity = +savedCart[key]
-            //    quantity = data.find(product => product.key === key);
-            
+        if(data.length){
+            for (const key in savedCart) {
+                const quantity = savedCart[key]
+                const savedProduct = data.find(product => product.key === key);
+                if(savedProduct){
+                    savedProduct.quantity = quantity;
+                    savedProducts.push(savedProduct);
+                }
+                updateCart(savedProducts);
+            }
         }
-    //     // savedProducts.push(savedProducts);
-    // //    let clonedArray = savedProducts.map(a => {return {...a}}) 
-    //     if(savedCart.length){
-    //     
-    //             // console.log(quantity)
-    //             const savedProduct = data.find(product => product.key === key);
-    //             if(savedProduct){
-    //             }
-    //             // console.log(savedProducts)
-    //             updateCart(savedProducts);
-    //             // console.log(cart)
-    //         }
-    //     }
+    },[data]);
+
+    const handleAddToCart = (product) =>{
+        const checkAlreadyAdded = cart.find(addedProduct => product.key === addedProduct.key);
+        if(!checkAlreadyAdded){
+            product.quantity = 1;
+            const newCart = [...cart, product];
+            updateCart(newCart);
+            AddToDb(product.key);
+        } else {
+            checkAlreadyAdded["quantity"] += 1;
+            const updatedCart = [...cart];
+            updateCart(updatedCart);
+            AddToDb(product.key);
+        }
+    }
+    const handleRemoveFromCart = (product) =>{
+        const checkAlreadyAdded = cart.find(addedProduct => product.key === addedProduct.key);
+        if(!checkAlreadyAdded){
+            product.quantity = 0;
+            const newCart = [...cart, product];
+            updateCart(newCart);
+            removeFromDb(product.key);
+        } else {
+            checkAlreadyAdded["quantity"] -= 1;
+            const updatedCart = [...cart];
+            updateCart(updatedCart);
+            removeFromDb(product.key);
+        }
+    }
 
     if(loading){
         return(
@@ -71,32 +137,12 @@ export default function ProdDisplay() {
         )
         
     }
-    // const savedCart = getStoredCart();
-
-// const AdCart=(id)=>{
-//     console.log(id)
-// }
-    // const AddCart = (Id)=>{
-    //     const checkAlreadyAdded = cart.find(addedProduct => Id === addedProduct)
-    //     if(!checkAlreadyAdded){
-    //         Id = 1
-    //         const newCart = [...cart,Id]
-    //         updateCart(newCart)
-    //         AddToDb(Id)
-    //     }else{
-    //         checkAlreadyAdded[Id] +=1;
-    //         const addedCart = [...cart]
-    //         updateCart(addedCart)
-    //         AddToDb(Id)
-    //     }
-    // }
 
     const Item = styled("div")(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         ...theme.typography.body2,
         padding: theme.spacing(1),
         textAlign: 'center',
-        border:"2px solid black",
         color: theme.palette.text.secondary,
       }));
 
@@ -109,6 +155,25 @@ export default function ProdDisplay() {
     setData(newItems);
 
   };
+  const StyleMod = styled(Paper)(({ theme }) => ({
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+    [theme.breakpoints.down('md')]: {
+        width: 300,
+          },
+    [theme.breakpoints.up('md')]: {
+        width: 500,
+              }
+  }))
+
+  
+  
+  
   
   const High= styled('div')(({ theme }) => ({
     [theme.breakpoints.up('md')]: {
@@ -124,11 +189,44 @@ export default function ProdDisplay() {
 
     }
   }))
-
+  const FullCat = styled('div')(({ theme }) => ({
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('md')]: {
+      display:"none"
+    },
+    [theme.breakpoints.up('md')]: {
+        display:"block"
+    },
+   
+  }));
+  
+  const list = (anchor) =>(
+    <Frame 
+    role="presentation">
+          <Stack spacing={3} direction="row" justifyContent="space-evenly " >
+            <Item>
+              <Box sx={{width:"100px"}}>
+          <Typography variant="h3">
+              Alpha 
+          </Typography>
+          </Box>
+          </Item>
+          <Close >
+        <CloseIcon onClick={toggleDrawer(anchor,false)} onKeyDown={toggleDrawer(anchor,false)}/>
+        </Close>
+        </Stack>
+      <List>
+      <ListItemButton>
+      <SideBar filter={filter} />
+            </ListItemButton>
+      </List>
+      </Frame>
+  )
     return (
         <Container>
             <Grid container spacing={2}>
                 <Grid item xs={2}>
+                    <FullCat>
                     <Box>
                     <Typography variant="h3" fontSize="20px">
                         Catergory
@@ -136,29 +234,49 @@ export default function ProdDisplay() {
                     </Typography>
                     <SideBar filter={filter} />
                     </Box>
+                    </FullCat>
+                    <Small>
+     
+              <TocIcon onClick={toggleDrawer("left",true)} sx={{paddingTop:"5px" ,fontSize:"40px" ,color:"#A14C1B"}}/>
+              <SwipeableDrawer
+              anchor={"left"}
+              open={state["left"]}
+              onClose={toggleDrawer("left",false)}
+              onOpen={toggleDrawer("left",true)}>
+                {list("left")}
+              </SwipeableDrawer>
+    </Small>
                  </Grid>
                 <Grid item xs={10}>
                 {/* <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 20, md: 32 }}> */}
-                <High>
-                   {console.log(quantity)} 
-                {data.map((e,i)=>{
-                const {  id,  name, price, image } = e;
+      <Button onClick={handleOpen}>Cart Summary</Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <StyleMod>
+            <Box>
+        <Cart cart={cart}></Cart>
+        </Box>
+        </StyleMod>
+      </Modal>
+      <High>
 
-                return ( 
-                <Full>
-                <SingleProduct  key={id} name={name} image={image} price={price} AddToCart={()=>AddToDb(id)} ClearCart={()=>removeFromDb(id)} />
-                </Full>
-                        )        // </Grid>
-                                
+                    {data.map(product=>{
+                        return(
+                        <Full>
+                        <SingleProduct key={product.key} product={product} handleAddToCart={handleAddToCart} handleRemoveFromCart={handleRemoveFromCart}/>
+                        </Full>
+                        )
                     })}
-                    <Full>
-                        <Cart cart={cart}></Cart>
-                    </Full>
                     </High>
 
                     {/* </Grid> */}
                 </Grid>
             </Grid>
+
         </Container>
     
     )

@@ -37,7 +37,7 @@ export const removeFromDb = id => {
   
 export const getStoredCart = () => {
     const exists = getDb();
-    return exists ? JSON.parse(JSON.stringify(exists)) : {};
+    return exists ? JSON.parse(exists) : {};
   }
   
 export const clearTheCart = () => {
