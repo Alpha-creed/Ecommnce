@@ -10,6 +10,7 @@ import TocIcon from '@mui/icons-material/Toc';
 import { SwipeableDrawer } from "@mui/material";
 
 
+
 const url="https://course-api.com/react-store-products"
 
 // 
@@ -26,6 +27,7 @@ export default function ProdDisplay() {
     const [open, setOpen] = React.useState(false);
     const [state,setState] = useState(false)
 const [count,setCount] = useState(1)
+  
 
 const toggleDrawer = (anchor,open) =>(event)=>{
   if(event && event.type === 'keydown' && (event.key === 'Tab' || event.key ===
@@ -164,7 +166,7 @@ const Small = styled('div')(({ theme }) => ({
     boxShadow: 24,
     p: 4,
     [theme.breakpoints.down('md')]: {
-        width: 300,
+        width: 200,
           },
     [theme.breakpoints.up('md')]: {
         width: 500,

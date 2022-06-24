@@ -27,6 +27,7 @@ import { green } from "@mui/material/colors";
 import { useState } from "react";
 import { brown } from "@mui/material/colors";
 import { Badge } from "@mui/material";
+import {useGlobal} from './Context'
 
 const Item = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -77,6 +78,7 @@ const Full = styled('div')(({ theme }) => ({
 function Head(){
 const [state,setState] = useState(false)
 const [count,setCount] = useState(1)
+// const {badge} =useGlobal()
 
 const toggleDrawer = (anchor,open) =>(event)=>{
   if(event && event.type === 'keydown' && (event.key === 'Tab' || event.key ===
@@ -178,7 +180,7 @@ const list = (anchor) =>(
         <Item>
           <Typography variant="body2" sx={{paddingRight:"40px",fontSize:"30px",display:"flex"}}>
               Cart
-             <Badge badgeContent={4} color="primary">
+             <Badge badgeContent={0} color="primary">
               <ShoppingCartIcon sx={{fontSize:"25px",paddingLeft:"10px",paddingTop:"12px"}}/>
               </Badge>
             </Typography>  
