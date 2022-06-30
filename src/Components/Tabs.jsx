@@ -1,37 +1,28 @@
-import { TabContext,TabList,TabPanel } from "@mui/lab"
-import { Tab,Tabs } from "@mui/material";
-import { Box } from "@mui/material"
-import { useState } from "react"
-import Home from "./Home/Intro";
-import Product from "../pages/Product";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import { Tabs } from '@mui/material';
+import Home from '../pages/Home';
+import About from '../pages/About'
+import Product from '../pages/Product';
 
-function LinkTab(props) {
-    return (
-      <Tab
-        component="a"
-        onClick={(event) => {
-          event.preventDefault();
-        }}
-        {...props}
-      />
-    );
-  }
-  
+export default function TabsL() {
+  const [val, setVal] = React.useState(0);
 
-export default function TabsConst(){
-    const [value, setValue] = useState(0);
+  const handleChange = (event, newValue) => {
+    setVal(newValue);
+  };
+  return (
+    <Box sx={{ width: '100%', typography: 'body1' }}>
+      <Tabs value={val} onChange={handleChange}>
+        <Tab label="Home"/>
+        <Tab label="About"/>
+        <Tab label="Product"/>
+      </Tabs>
+      {val === 0 && <Home/>}
+      {val === 1 && <About/>}
+      {val === 1 && <Product/>}
 
-    const handleChange = (event, newValue) => {
-      setValue(newValue);
-    };
-    return(
-        <Box>
-            <Tabs value={value} onChange={handleChange} >
-              <LinkTab label="Home" href="" />
-              <LinkTab label="About" href="../pages/About" />
-              <LinkTab label="Product" href="" />
-            </Tabs>
-        </Box>
-        
-    )
+  </Box>
+  );
 }
