@@ -91,7 +91,7 @@ import { SwipeableDrawer } from "@mui/material";
     },
   }));
 export default function SingleProduct(props) {
-  const {name,image,price} = props.product
+  const {id,name,image,price} = props.product
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

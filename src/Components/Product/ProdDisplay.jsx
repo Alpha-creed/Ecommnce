@@ -266,10 +266,10 @@ const Small = styled('div')(({ theme }) => ({
       </Modal>
       <High>
 
-                    {data.map(product=>{
+                    {data.map((product,i)=>{
                         return(
                         <Full>
-                        <SingleProduct key={product.key} product={product} handleAddToCart={handleAddToCart} handleRemoveFromCart={handleRemoveFromCart}/>
+                        <SingleProduct key={i} product={product} handleAddToCart={handleAddToCart} handleRemoveFromCart={handleRemoveFromCart}/>
                         </Full>
                         )
                     })}

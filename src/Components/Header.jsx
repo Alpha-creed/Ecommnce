@@ -74,7 +74,31 @@ const Full = styled('div')(({ theme }) => ({
   },
  
 }));
-
+const Left = styled('div')(({ theme }) => ({
+  padding: theme.spacing(1),
+  position:"absolute",
+  display:"flex",
+  ...theme.typography.h3,
+  [theme.breakpoints.down('md')]: {
+    display:"none"
+  },
+  [theme.breakpoints.up('md')]: {
+      left:"0",
+      top:"12px"
+  },
+}));
+const Right = styled('div')(({ theme }) => ({
+  padding: theme.spacing(1),
+  position:"absolute",
+  display:"flex",
+  [theme.breakpoints.down('md')]: {
+    display:"none"
+  },
+  [theme.breakpoints.up('md')]: {
+      right:"0",
+      top:"12px"
+  },
+}));
 function Head(){
 const [state,setState] = useState(false)
 const [count,setCount] = useState(1)
@@ -165,20 +189,12 @@ const list = (anchor) =>(
     <Container>
               <Full>
 
-    <Stack  direction={{ xs: 'column', sm: 'row' }}
-    spacing={{ xs: 3, sm: 10, md: 40 }} justifyContent="center">
-        <Item>
-        <Typography variant="h3">
+             <Left>
             Alpha Code
-        </Typography>
-      
-        </Item>
-      
-        <Item>
-        <Tabs/>
-        </Item>
-        <Item>
-          <Typography variant="body2" sx={{paddingRight:"40px",fontSize:"30px",display:"flex"}}>
+        </Left>    
+             <Tabs/>
+             <Right>
+             <Typography variant="body2" sx={{paddingRight:"40px",fontSize:"30px",display:"flex"}}>
               Cart
              <Badge badgeContent={0} color="primary">
               <ShoppingCartIcon sx={{fontSize:"25px",paddingLeft:"10px",paddingTop:"12px"}}/>
@@ -189,8 +205,7 @@ const list = (anchor) =>(
               Login
               <PersonAddAlt1Icon sx={{fontSize:"25px",paddingLeft:"10px",marginTop:"5px",paddingTop:"5px"}}/>
             </Typography>
-            </Item>
-             </Stack>
+            </Right>
              </Full>
              <Small>
         <Stack spacing={1} direction="row" justifyContent="space-around">
@@ -211,7 +226,6 @@ const list = (anchor) =>(
               </Item>
     </Stack>
     </Small>
-
     </Container>
     )
 }
