@@ -7,9 +7,7 @@ import ProdDisplay from '../Components/Product/ProdDisplay'
 export default function Product() {
   return (
     <Box>
-      <Head/>
       <ProdDisplay/>
-      <End/>
     </Box>
   )
 }

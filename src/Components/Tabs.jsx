@@ -21,7 +21,7 @@ export default function TabsL() {
       </Tabs>
       {val === 0 && <Home/>}
       {val === 1 && <About/>}
-      {val === 1 && <Product/>}
+      {val === 2 && <Product/>}
 
   </Box>
   );

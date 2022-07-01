@@ -21,13 +21,11 @@ const Feat = styled('div')(({ theme }) => ({
 export default function Home() {
   return (
     <Container>
-        <Head/>
         <Intro/>
         <Feat>
         <FProduct/>
         </Feat>
-        <Custom/>
-        <Footer/>
+        <Custom/>  
     </Container>
   )
 }

@@ -91,11 +91,28 @@ import { SwipeableDrawer } from "@mui/material";
     },
   }));
 export default function SingleProduct(props) {
-  const {id,name,image,price,AddToCart,ClearCart} = props.product
+  const {name,image,price} = props.product
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   
+  const add=()=>{
+     try{
+      return props.handleAddToCart(props.product)
+      }catch(e){
+        alert("Add button is useless for the home page please go to the product page")
+      }
+    
+  }
+  const remove=()=>{
+    try{
+     return props.handleRemoveFromCart(props.product)
+     }catch(e){
+       alert("Remove button is useless for the home page please go to the product page")
+     }
+   
+ }
+
 
   return (
     <Box sx={{width:"auto"}}>
@@ -115,11 +132,10 @@ export default function SingleProduct(props) {
             <Typography>{name}</Typography>
             <Typography>${price}</Typography>
         </Stack> 
-        {/* <Button onClick={()=>AddToCart(props)}>Add to cart</Button>
-        <Button onClick={()=>ClearCart(props)}>clear Items</Button> */}
+        {/* //Add and remove buttons */}
                 <Btn>
-        <Button onClick={()=>props.handleAddToCart(props.product)}>add </Button>
-        <Button onClick={()=>props.handleRemoveFromCart(props.product)}>remove</Button>
+        <Button onClick={add}>add </Button>
+        <Button onClick={remove}>remove</Button>
         </Btn>
         </StyleMod>
       </Modal>

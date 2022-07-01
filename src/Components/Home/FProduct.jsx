@@ -63,7 +63,7 @@ const BtnConst = styled('div')(({ theme }) => ({
 
 }));
 
-  const add = (a) => a.slice(0,3);
+const add = (a) => a.slice(0,3);
 
 export default function FProduct() {
   const [hover,setHover] = useState(false);
@@ -119,13 +119,13 @@ export default function FProduct() {
       </Typography>
       <Divider/>
       <Small>
-      {items.map((e,i)=>{
-            const {  id,  name, price, image } = e;
-                          return <SingleProduct  key={id} name={name} image={image} price={price}/>;
+      {items.map(product=>{
+                        return <SingleProduct  key={product.key} product={product} />;
                             
                  })}
+                  
                  </Small>
-                  <Btn>
+                  <Btn> 
                  <Button href="www.google.com"  variant="contained">All Products</Button>
                  </Btn>
                  <BtnConst>
