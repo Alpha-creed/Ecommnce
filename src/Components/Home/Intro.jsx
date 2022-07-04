@@ -49,7 +49,7 @@ const Item = styled("div")(({ theme }) => ({
 
 export default function Intro() {
   return (
-    <Grid container spacing={2} justifyContent="space-around" sx={{paddingTop:5}}>
+    <Grid container spacing={2} justifyContent="space-around" >
         <Grid item xs={6} >
             <Container maxWidth="sm">
             <TextsHead>

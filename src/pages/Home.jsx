@@ -1,4 +1,4 @@
-import { Container, styled } from '@mui/material'
+import { Container, styled,Box } from '@mui/material'
 import React from 'react'
 import Custom from '../Components/Home/Custom'
 import Footer from '../Components/Home/Footer'
@@ -7,7 +7,8 @@ import Head from '../Components/Header'
 import Intro from '../Components/Home/Intro'
 
 const Feat = styled('div')(({ theme }) => ({
-    
+    padding:0,
+    margin:0,
     [theme.breakpoints.down('md')]: {
         paddingTop:100,
     },
@@ -20,12 +21,12 @@ const Feat = styled('div')(({ theme }) => ({
 
 export default function Home() {
   return (
-    <Container>
+    <Box sx={{width:"100%"}}>
         <Intro/>
         <Feat>
         <FProduct/>
         </Feat>
         <Custom/>  
-    </Container>
+    </Box>
   )
 }

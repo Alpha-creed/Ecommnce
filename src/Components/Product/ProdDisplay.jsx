@@ -8,6 +8,7 @@ import { Cart } from '../Cart/Cart';
 import CloseIcon from '@mui/icons-material/Close';
 import TocIcon from '@mui/icons-material/Toc';
 import { SwipeableDrawer } from "@mui/material";
+import KeyIcon from '@mui/icons-material/Key';
 
 
 
@@ -22,6 +23,7 @@ export default function ProdDisplay() {
     const [items,setItems] = useState([])
     const [data,setData] = useState(items)
     const [num,setNum] =useState(0)
+    const [Display,setDis] =useState(true)
     const [categories, setCategories] = useState();
     const [cart,updateCart] = useState([])
     const [open, setOpen] = React.useState(false);
@@ -34,7 +36,7 @@ const toggleDrawer = (anchor,open) =>(event)=>{
   "Shift")){
     return;
   }
-  setState({...state,[anchor]:open})
+  setState({...state,[anchor]:open});
 }
 const Small = styled('div')(({ theme }) => ({
     [theme.breakpoints.down('md')]: {
@@ -61,6 +63,9 @@ const Small = styled('div')(({ theme }) => ({
   }));
   const handleOpen = () => {
     setOpen(true);
+  };
+  const keyOpen = () => {
+    setDis(false)
   };
   const handleClose = () => {
     setOpen(false);
@@ -218,40 +223,45 @@ const Small = styled('div')(({ theme }) => ({
         </Close>
         </Stack>
       <List>
-      <ListItemButton>
-      <SideBar filter={filter} />
+      <ListItemButton onClick={keyOpen}>
+      <SideBar filter={filter}  />
             </ListItemButton>
       </List>
       </Frame>
   )
     return (
         <Container>
-            <Grid container spacing={2}>
+            <Grid container >
                 <Grid item xs={2}>
-                    <FullCat>
-                    <Box>
-                    <Typography variant="h3" fontSize="20px">
-                        Catergory
-
-                    </Typography>
-                    <SideBar filter={filter} />
-                    </Box>
+                    <FullCat onMouseEnter={keyOpen}>
+                    <SideBar filter={filter}  />
                     </FullCat>
+                    {/* For view in small screens */}
                     <Small>
      
-              <TocIcon onClick={toggleDrawer("left",true)} sx={{paddingTop:"5px" ,fontSize:"40px" ,color:"#A14C1B"}}/>
+              <KeyIcon onClick={toggleDrawer("left",true)}  disableGutters={true} sx={{paddingLeft:"0px",margin:"0px" ,fontSize:"40px" ,color:"#A14C1B"}}/>
               <SwipeableDrawer
               anchor={"left"}
               open={state["left"]}
               onClose={toggleDrawer("left",false)}
               onOpen={toggleDrawer("left",true)}>
+                
                 {list("left")}
               </SwipeableDrawer>
     </Small>
                  </Grid>
                 <Grid item xs={10}>
                 {/* <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 20, md: 32 }}> */}
-      <Button onClick={handleOpen}>Cart Summary</Button>
+   <FullCat>
+     {Display?<Typography>
+      Click On left side buttons to Display Products
+     </Typography>:<Button onClick={handleOpen}>Cart Summary</Button>}
+     </FullCat>
+     <Small>
+     {Display?<Typography>
+      Click On Key to Display Products
+     </Typography>:<Button onClick={handleOpen}>Cart Summary</Button>}
+     </Small>
       <Modal
         open={open}
         onClose={handleClose}

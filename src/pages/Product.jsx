@@ -6,7 +6,7 @@ import ProdDisplay from '../Components/Product/ProdDisplay'
 
 export default function Product() {
   return (
-    <Box>
+    <Box sx={{padding:"0",margin:"0"}}>
       <ProdDisplay/>
     </Box>
   )

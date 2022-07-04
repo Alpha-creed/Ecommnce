@@ -1,7 +1,6 @@
 import { Button, Container } from '@mui/material'
 import { Grid } from '@mui/material'
 import { Paper } from '@mui/material'
-import { Link } from '@mui/material'
 import { Stack } from '@mui/material'
 import { styled } from '@mui/material'
 import { Typography } from '@mui/material'
@@ -10,17 +9,23 @@ import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import { lightBlue } from '@mui/material/colors'
 import { useState } from 'react'
-import { Box } from '@mui/system'
+import { Box } from '@mui/material'
 import { useEffect } from 'react'
 import SingleProduct from '../SingleProduct'
+import { Route, Router,Link, Routes } from 'react-router-dom'
+import Product from '../../pages/Product'
+import Home from '../../pages/Home'
 
 const url="https://course-api.com/react-store-products"
 
 
 
 const Small = styled('div')(({ theme }) => ({
+  display:"flex",
+  justifyContent:"center",
   [theme.breakpoints.down('md')]: {
-      display:"block"
+      display:"block",
+      paddingLeft:"30px"
   },
   [theme.breakpoints.up('md')]: {
       display:"flex",
@@ -31,37 +36,7 @@ const Small = styled('div')(({ theme }) => ({
   position:"relative"
  
 }));
-const Btn = styled('div')(({ theme }) => ({
-  margin: 0,
-  position:"absolute",
-  [theme.breakpoints.down('sm')]: {
-    display:"none"
-  },
-  [theme.breakpoints.down('md')]: {
-    Bottom:0,
-    left:250 
-  },
-  [theme.breakpoints.up('md')]: {
-   Bottom:0,
-   left:500 
 
-  },
-
-}));
-const BtnConst = styled('div')(({ theme }) => ({
-  margin: 0,
-  position:"absolute",
-  [theme.breakpoints.down('sm')]: {
-    left:50,
-    padding:15 
-
-  },
-  [theme.breakpoints.up('sm')]: {
-   display:"none", 
-
-  },
-
-}));
 
 const add = (a) => a.slice(0,3);
 
@@ -113,7 +88,7 @@ export default function FProduct() {
 
    
   return (
-    <Container sx={{backgroundColor:"#E6F7FF" , paddingBottom:10,position:"relative"}}>
+    <Box sx={{ paddingBottom:10,display:"flex",width:"100%" ,flexWrap:"wrap"}}>
       <Typography variant="h3">
           Featured Product
       </Typography>
@@ -123,14 +98,10 @@ export default function FProduct() {
                         return <SingleProduct  key={product.key} product={product} />;
                             
                  })}
-                  
+                  <Typography variant="h6">
+                    Go to our product page for more of our products
+                  </Typography>
                  </Small>
-                  <Btn> 
-                 <Button href="www.google.com"  variant="contained">All Products</Button>
-                 </Btn>
-                 <BtnConst>
-                 <Button href="www.google.com"  variant="contained">All Products</Button>
-                 </BtnConst>
-    </Container>
+    </Box>
   )
 }

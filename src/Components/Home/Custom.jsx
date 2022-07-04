@@ -40,7 +40,7 @@ const Item = styled("div")(({ theme }) => ({
   }))
 export default function Custom() {
   return (
-   <Box>
+   <Box sx={{width:"300px", display:"flex",  flexDirection:"column"}}>
     <Item>
     <Box sx={{textAlign:"left",width:"200px"}}>
     <Sgl>

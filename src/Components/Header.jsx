@@ -28,6 +28,12 @@ import { useState } from "react";
 import { brown } from "@mui/material/colors";
 import { Badge } from "@mui/material";
 import {useGlobal} from './Context'
+import {Route,Routes,BrowserRouter as Router, Link} from "react-router-dom"
+import About from '../pages/About'
+import Home from '../pages/Home'
+import Product from "../pages/Product";
+import Test from "./Test";
+import SmallTab from "./Test";
 
 const Item = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -83,8 +89,8 @@ const Left = styled('div')(({ theme }) => ({
     display:"none"
   },
   [theme.breakpoints.up('md')]: {
-      left:"0",
-      top:"12px"
+      left:60,
+      top:"5px"
   },
 }));
 const Right = styled('div')(({ theme }) => ({
@@ -128,7 +134,7 @@ const list = (anchor) =>(
       </Close>
       </Stack>
     <List>
-    <ListItemButton>
+    <ListItemButton button component={Link} to="/">
           <ListItem disablePadding>
               <ListItemIcon>
               <HomeIcon/>
@@ -136,7 +142,7 @@ const list = (anchor) =>(
               <ListItemText primary="Home"/>
               </ListItem>
               </ListItemButton>
-              <ListItemButton>
+              <ListItemButton  button component={Link} to="/about">
               <ListItem disablePadding>
               <ListItemIcon>
                 <InfoIcon/>
@@ -144,12 +150,12 @@ const list = (anchor) =>(
               <ListItemText primary="About"/>
               </ListItem>
               </ListItemButton>
-              <ListItemButton>
+              <ListItemButton button component={Link} to="/product">
               <ListItem disablePadding>
               <ListItemIcon>
               <TaskIcon/>
               </ListItemIcon>
-              <ListItemText primary="Project"/>
+              <ListItemText primary="Product"/>
           </ListItem>
           </ListItemButton>
     </List>
@@ -159,7 +165,7 @@ const list = (anchor) =>(
 
     <ListItemButton disableTouchRipple disableRipple>
       <Box  sx={{width:"130px"}}>
-      <ListItemButton>
+      <ListItemButton >
           <ListItem disablePadding>
           <ListItemText primary="Cart"/>
               <ListItemIcon>
@@ -188,7 +194,6 @@ const list = (anchor) =>(
   return(
     <Container>
               <Full>
-
              <Left>
             Alpha Code
         </Left>    
@@ -197,34 +202,20 @@ const list = (anchor) =>(
              <Typography variant="body2" sx={{paddingRight:"40px",fontSize:"30px",display:"flex"}}>
               Cart
              <Badge badgeContent={0} color="primary">
-              <ShoppingCartIcon sx={{fontSize:"25px",paddingLeft:"10px",paddingTop:"12px"}}/>
+              <ShoppingCartIcon sx={{fontSize:"35px",paddingLeft:"10px",paddingTop:"12px"}}/>
               </Badge>
             </Typography>  
           
             <Typography variant="body2" sx={{paddingRight:"40px",fontSize:"30px" ,display:"flex"}}>
               Login
-              <PersonAddAlt1Icon sx={{fontSize:"25px",paddingLeft:"10px",marginTop:"5px",paddingTop:"5px"}}/>
+              <PersonAddAlt1Icon sx={{fontSize:"35px",paddingLeft:"10px",marginTop:"5px",paddingTop:"5px"}}/>
             </Typography>
             </Right>
              </Full>
              <Small>
-        <Stack spacing={1} direction="row" justifyContent="space-around">
-            <Item>
-        <Typography variant="h3">
-            Alpha 
-        </Typography>
-        </Item>
-        <Item>
-              <TocIcon onClick={toggleDrawer("left",true)} sx={{paddingTop:"5px" ,fontSize:"50px" ,color:"#A14C1B"}}/>
-              <SwipeableDrawer
-              anchor={"left"}
-              open={state["left"]}
-              onClose={toggleDrawer("left",false)}
-              onOpen={toggleDrawer("left",true)}>
-                {list("left")}
-              </SwipeableDrawer>
-              </Item>
-    </Stack>
+              <Router>
+        <SmallTab/>
+        </Router>
     </Small>
     </Container>
     )
