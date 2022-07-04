@@ -51,7 +51,7 @@ const ItemConst = styled('div')(({ theme }) => ({
 
 export default function Card({title,icon}) {
   return (
-    <Container>
+    <Box sx={{paddingBottom:"20px",paddingRight:"20px"}}>
         <Item>
           <Icon>
         <Avatar>
@@ -78,6 +78,6 @@ export default function Card({title,icon}) {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sapiente error qui iure, deleniti sit, itaque voluptatem assumenda officiis obcaecati consequatur in? 
         </Typography>
       </ItemConst>
-      </Container>
+      </Box>
   )
 }

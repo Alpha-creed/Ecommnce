@@ -3,7 +3,7 @@ import React from 'react'
 
 const Foot = styled("div")(({ theme }) => ({
     textAlign:"center",
-    backgroundColor:"brown",
+    color:"red",
     [theme.breakpoints.up('md')]: {
         display:"flex",
         justifyContent:"center",

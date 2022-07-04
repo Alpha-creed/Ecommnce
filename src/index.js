@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import App from './App';
 import Head from './Components/Header';
+import Custom from './Components/Home/Custom';
 import FProduct from './Components/Home/FProduct';
 import Intro from './Components/Home/Intro';
 import ProdDisplay from './Components/Product/ProdDisplay';
@@ -15,7 +17,7 @@ import Product from './pages/Product'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Head/>
+    <App/>
   </React.StrictMode>
 );
 

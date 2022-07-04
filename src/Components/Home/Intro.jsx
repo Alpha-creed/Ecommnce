@@ -2,6 +2,8 @@ import { Box, Button, Grid, styled, Typography } from '@mui/material'
 import zIndex from '@mui/material/styles/zIndex';
 import { Container } from '@mui/system'
 import React from 'react'
+import { Route,Link, Router } from 'react-router-dom';
+import Product from '../../pages/Product';
 
 
 const Item = styled("div")(({ theme }) => ({
@@ -19,13 +21,13 @@ const Item = styled("div")(({ theme }) => ({
     // backgroundColor:"#d7ccc8",
     color:"#071233",
       [theme.breakpoints.down('md')]: {
-        width:"200px" ,
+        width:"100%" ,
         fontSize:"20px",
         paddingBottom:15,
 
       },
       [theme.breakpoints.up('md')]: {
-        width:"300px" ,
+        width:"100%" ,
         fontSize:"40px",
         paddingBottom:30,
 
@@ -38,11 +40,11 @@ const Item = styled("div")(({ theme }) => ({
     color:"lightBlue",
 
       [theme.breakpoints.down('md')]: {
-        width:"270px"  ,
+        width:"100%"  ,
         paddingBottom:15
       },
       [theme.breakpoints.up('md')]: {
-        width:"370px"  ,
+        width:"100%"  ,
         paddingBottom:30
       },
     }));
@@ -62,9 +64,11 @@ export default function Intro() {
                 totam dolorum voluptatem itaque impedit nisi 
                 officia sapiente ratione eum ipsum!
                 </TextsDesc>
+                {/* <Link to="/product"> */}
             <Button variant="contained" sx={{backgroundColor:"#663011"}}>
-                SHOP NOW
+        Shop Now
             </Button>
+            {/* </Link> */}
             </Container>
         </Grid>
         <Grid item xs={6}>
