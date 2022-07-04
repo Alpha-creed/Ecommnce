@@ -31,7 +31,7 @@ import { SwipeableDrawer } from "@mui/material";
       padding: theme.spacing(1),
     },
     [theme.breakpoints.up('md')]: {
-        width:100,
+        width:500,
         height:150,
     },
     [theme.breakpoints.down('sm')]: {
@@ -115,7 +115,7 @@ export default function SingleProduct(props) {
 
 
   return (
-    <Box sx={{width:"auto"}}>
+    <Box sx={{width:"auto" ,paddingLeft:10}}>
         <Imgs src={image} alt={name}  />
         <ImgsConst src={image} alt={name}  />
         <Button onClick={handleOpen}>View Details</Button>

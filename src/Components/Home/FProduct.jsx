@@ -98,9 +98,6 @@ export default function FProduct() {
                         return <SingleProduct  key={product.key} product={product} />;
                             
                  })}
-                  <Typography variant="h6">
-                    Go to our product page for more of our products
-                  </Typography>
                  </Small>
     </Box>
   )
